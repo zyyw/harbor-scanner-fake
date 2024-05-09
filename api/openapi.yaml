@@ -340,7 +340,6 @@ components:
           $ref: '#/components/schemas/Artifact'
         enabled_capabilities:
           type: array
-          x-nullable: true
           description: Enable which capabilities supported by scanner, for backward compatibility, without this field scanner can be considered to enable all capabilities by default.
           items:
             type: object
@@ -366,6 +365,7 @@ components:
                 - "application/vnd.security.sbom.report+json; version=1.0"
               parameters:
                 $ref: '#/components/schemas/SbomParameters'
+                x-nullable: true
                 description: The additional parameters for the scan request, for the SBOM type, harbor will carry with `sbom_media_types` to specify the expected formats for SBOM content.
                 example: |
                   {
