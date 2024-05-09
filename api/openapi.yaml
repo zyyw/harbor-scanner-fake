@@ -340,6 +340,7 @@ components:
           $ref: '#/components/schemas/Artifact'
         enabled_capabilities:
           type: array
+          x-nullable: true
           description: Enable which capabilities supported by scanner, for backward compatibility, without this field scanner can be considered to enable all capabilities by default.
           items:
             type: object
