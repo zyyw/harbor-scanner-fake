@@ -3,7 +3,9 @@ package server
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
+	"net/http/httputil"
 	"time"
 
 	"github.com/goharbor/harbor-scanner-fake/api"
@@ -34,6 +36,14 @@ func (s *Server) GetMetadata(ctx echo.Context) error {
 }
 
 func (s *Server) AcceptScanRequest(ctx echo.Context) error {
+	req := ctx.Request()
+	reqDump, err := httputil.DumpRequestOut(req, true)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("REQUEST:\n%s", string(reqDump))
+
 	time.Sleep(s.cfg.Server.Delay.AcceptScanRequest)
 
 	var scanRequest api.ScanRequest
